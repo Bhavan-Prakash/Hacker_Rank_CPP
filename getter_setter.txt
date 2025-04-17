@@ -1,0 +1,67 @@
+In C++, getters and setters are member functions used to access and modify the private data members of a class. They provide encapsulation and control over how data is accessed or modified.
+
+
+🧠 Syntax of Getters and Setters
+class ClassName {
+private:
+    DataType variableName;
+
+public:
+    // Setter
+    void setVariableName(DataType value) {
+        variableName = value;
+    }
+
+    // Getter
+    DataType getVariableName() const {
+        return variableName;
+    }
+};
+
+
+
+✅ Example
+#include <iostream>
+using namespace std;
+
+class Student {
+private:
+    string name;
+    int age;
+
+public:
+    // Setter for name
+    void setName(string n) {
+        name = n;
+    }
+
+    // Getter for name
+    string getName() const {
+        return name;
+    }
+
+    // Setter for age
+    void setAge(int a) {
+        if (a > 0)
+            age = a;
+        else
+            cout << "Invalid age!" << endl;
+    }
+
+    // Getter for age
+    int getAge() const {
+        return age;
+    }
+};
+
+int main() {
+    Student s;
+    s.setName("John");
+    s.setAge(21);
+
+    cout << "Name: " << s.getName() << endl;
+    cout << "Age: " << s.getAge() << endl;
+
+    return 0;
+}
+
