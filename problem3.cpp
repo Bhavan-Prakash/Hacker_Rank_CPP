@@ -1,53 +1,63 @@
 #include<iostream>
-
 using namespace std;
 
-class Box{
-    private: int l,b,h;
+class Box {
+private:
+    int l, b, h;
 
-    public: Box(){
-        l = 0;
-        b = 0;
-        h = 0;
+public:
+    // Default constructor
+    Box() : l(0), b(0), h(0) {}
+
+    // Parameterized constructor
+    Box(int length, int breadth, int height) : l(length), b(breadth), h(height) {}
+
+    // Copy constructor
+    Box(const Box& s) {
+        l = s.l;
+        b = s.b;
+        h = s.h;
     }
 
-    public: Box(int length, int breadth, int height){
-        l = length;
-        b = breadth;
-        h = height;
+    // Getters
+    int getLength() { return l; }
+    int getBreadth() { return b; }
+    int getHeight() { return h; }
+
+    // Calculate volume
+    long long CalculateVolume() {
+        return static_cast<long long>(l) * b * h;
     }
 
-    public: int getLength(){
-        cout<<l<<"\n";
-        return 0;
+    // Overload '<' operator
+    bool operator<(const Box& other) {
+        if (l < other.l) return true;
+        if (l == other.l && b < other.b) return true;
+        if (l == other.l && b == other.b && h < other.h) return true;
+        return false;
     }
 
-    public: int getBreadth(){
-        cout<<b<<"\n";
-        return 0;
-
-    }
-
-    public: int getheight(){
-        cout<<h<<"\n";
-        return 0;
-
-    }
-
-    public: int CalculateVolume(){
-        int v = l*b*h;
-        cout<<v<<"\n";
-        return 0;
-
+    // Overload '<<' operator
+    friend ostream& operator<<(ostream& out, const Box& B) {
+        out << B.l << " " << B.b << " " << B.h;
+        return out;
     }
 };
 
-int main(){
+int main() {
     Box b1;
     Box b2(2, 3, 4);
-    b2.getLength();
-    b2.getBreadth();
-    b2.getheight();
-    b2.CalculateVolume();
 
+    cout << b2.getLength() << endl;
+    cout << b2.getBreadth() << endl;
+    cout << b2.getHeight() << endl;
+
+    cout << b2.CalculateVolume() << endl;
+
+    bool x = (b1 < b2);
+    cout << (x ? "True" : "False") << endl;
+
+    cout << b2 << endl;
+
+    return 0;
 }
